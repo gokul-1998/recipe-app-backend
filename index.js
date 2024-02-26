@@ -88,16 +88,19 @@ app.get("/recipe/:name", async (req, res) => {
 );
 
 
-// delete recipe by name
-app.delete("/recipe/:name", async (req, res) => {
+// delete recipe by id
+app.delete("/recipe/:id", async (req, res) => {
   try {
-    const data = await recipeSchema.deleteOne({ name: req.params.name });
+    const data = await recipeSchema.findByIdAndDelete(req.params._id);
     res.status(200).send(data);
   } catch (error) {
-    res.status(501).send(error);
+    res.status(501
+    ).send
+    (error);
   }
 }
 );
+
 
 // get recipe by id
 app.get("/recipe/id/:id", async (req, res) => {
