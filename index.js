@@ -109,3 +109,16 @@ app.get("/recipe/id/:id", async (req, res) => {
   }
 }
 );
+
+// get by email
+app.get("/recipe/email/:email", async (req, res) => {
+  console.log(req.params.email)
+  try {
+    const data = await recipeSchema.find({createdBy:req.params.email});
+    console.log(data)
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(501).send(error);
+  }
+}
+);
